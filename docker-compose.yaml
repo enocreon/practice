@@ -6,7 +6,7 @@ services:
       - 80:80
     volumes:
       - ./logs:/var/log/nginx
-      - ./app:/var/www/app:rw
+      - ./app/public:/var/www/app/public
     environment:
       - NGINX_HOST=localhost
       - NGINX_PORT=80
@@ -18,3 +18,5 @@ services:
     volumes:
       - ./app:/var/www/app:rw
     command: php-fpm
+  rabbit:
+    image: rabbitmq:3-management

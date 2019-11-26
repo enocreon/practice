@@ -10,6 +10,7 @@ services:
     environment:
       - NGINX_HOST=localhost
       - NGINX_PORT=80
+      - TZ
     command: nginx -g "daemon off;"
     links:
       - php
@@ -17,8 +18,10 @@ services:
     build: ./php
     volumes:
       - ./app:/var/www/app:rw
+    environment:
+      - TZ
     command: php-fpm
   rabbit:
     image: rabbitmq:3-management
-    ports:
-      - 15672:15672
+    environment:
+      - TZ
